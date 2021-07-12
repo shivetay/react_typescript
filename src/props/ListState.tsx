@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 
 
-
 const ListState: React.FC = () => {
   const [name,setName] = useState('')
   const [guests, setGuests] = useState<string[]>([])
@@ -22,6 +21,8 @@ setGuests([...guests, name])
 </ul>
       <input value={name} onChange={(e) => setName(e.target.value)}/>
       <button onClick={onClick}>Add guest</button>
+
+     
     </div>
   )
 }
