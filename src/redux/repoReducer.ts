@@ -1,3 +1,6 @@
+import { ActionType } from './ACtionTypes';
+import { Action } from './Actions';
+
 interface RepoState {
   loading: boolean;
   error: string | null;
@@ -8,29 +11,6 @@ interface RepoState {
 //   type: string;
 //   payload?: any;
 // }
-
-interface SearchReposAction {
-  type: ActionType.SEARCH_REPO;
-}
-interface SearchRepoActionSuccess {
-  type: ActionType.SEARCH_REPO_SUCCESS;
-  payload: string[];
-}
-interface SearchReposActionError {
-  type: ActionType.SEARCH_REPO_ERROR;
-  payload: string;
-}
-
-type Action =
-  | SearchReposAction
-  | SearchRepoActionSuccess
-  | SearchReposActionError;
-
-enum ActionType {
-  SEARCH_REPO = 'SEARCH_REPO',
-  SEARCH_REPO_SUCCESS = 'SEARCH_REPO_SUCCESS',
-  SEARCH_REPO_ERROR = 'SEARCH_REPO_ERROR',
-}
 
 const reducer = (state: RepoState, action: Action): RepoState => {
   switch (action.type) {
