@@ -10,35 +10,43 @@ interface RepoState {
 // }
 
 interface SearchReposAction {
-  type: 'SEARCH_REPO';
+  type: ActionType.SEARCH_REPO;
 }
 interface SearchRepoActionSuccess {
-  type: 'SEARCH_REPO_SUCCESS';
+  type: ActionType.SEARCH_REPO_SUCCESS;
   payload: string[];
 }
 interface SearchReposActionError {
-  type: 'SEARCH_REPO_ERROR';
+  type: ActionType.SEARCH_REPO_ERROR;
   payload: string;
 }
 
-const reducer = (
-  state: RepoState,
-  action: SearchReposAction | SearchRepoActionSuccess | SearchReposActionError
-): RepoState => {
+type Action =
+  | SearchReposAction
+  | SearchRepoActionSuccess
+  | SearchReposActionError;
+
+enum ActionType {
+  SEARCH_REPO = 'SEARCH_REPO',
+  SEARCH_REPO_SUCCESS = 'SEARCH_REPO_SUCCESS',
+  SEARCH_REPO_ERROR = 'SEARCH_REPO_ERROR',
+}
+
+const reducer = (state: RepoState, action: Action): RepoState => {
   switch (action.type) {
-    case 'SEARCH_REPO':
+    case ActionType.SEARCH_REPO:
       return {
         loading: true,
         error: null,
         data: [],
       };
-    case 'SEARCH_REPO_ERROR':
+    case ActionType.SEARCH_REPO_ERROR:
       return {
         loading: false,
         error: action.payload,
         data: [],
       };
-    case 'SEARCH_REPO_SUCCESS':
+    case ActionType.SEARCH_REPO_SUCCESS:
       return {
         loading: false,
         error: null,
