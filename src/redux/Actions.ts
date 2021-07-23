@@ -1,4 +1,4 @@
-import { ActionType } from './ACtionTypes';
+import { ActionType } from './ActionTypes';
 
 interface SearchReposAction {
   type: ActionType.SEARCH_REPO;
